@@ -1,6 +1,6 @@
 from random import randint
 from time import sleep
-from os import system
+from os import system, name
 import signal
 
 
@@ -68,10 +68,16 @@ def get_input():
     if inp != '':
         globals()['rows'] = int(inp) if int(inp) <= 11 else rows
 
+def clear():
+    if name == 'posix':
+        system('clear')
+    else:
+        system('cls')
+
 def main_block():
     again = True
     while again:
-        system('clear')
+        clear()
         i = 1
         kana_temp = []
         for j in range(rows):
